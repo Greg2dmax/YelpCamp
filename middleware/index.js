@@ -10,7 +10,7 @@ module.exports = {
     },
     checkUserCampground: function(req, res, next){
         if(req.isAuthenticated()){
-            Campground.findById(req.params.id, function(err, campground){
+            Campground.findById(req.params.id, function(campground){
                if(campground.author.id.equals(req.user._id)){
                    next();
                } else {
@@ -27,7 +27,7 @@ module.exports = {
     checkUserComment: function(req, res, next){
         console.log("YOU MADE IT!");
         if(req.isAuthenticated()){
-            Comment.findById(req.params.commentId, function(err, comment){
+            Comment.findById(req.params.commentId, function(comment){
                if(comment.author.id.equals(req.user._id)){
                    next();
                } else {
